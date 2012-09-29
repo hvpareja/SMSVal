@@ -12,8 +12,15 @@
 
 # Chapter 1: ----------------------------------------------------------
 # Input variables -----------------------------------------------------
-#                                                                     #
-#                                                                     #
+# Constant parameters                                                 #
+ my $base_url="http://www.smstrend.net/Trend/";# Provider base url    #  
+ my %opts_url=(          # url for the choosen option:                #
+                "send"    => "SENDSMS",          # Opt 1. New message #
+                "status"  => "SMSSTATUS",        # Opt 2. View status #
+                "cancel"  => "REMOVE_DELAYED",   # Opt 3. Cancel      #
+                "history" => "SMSHISTORY",       # Opt 4. History     #
+                "credit"  => "CREDITS"           # Opt 5. Credit      #  
+               );                                                     #
 # Mandatory variables:                                                #
  my $login;              # Login: User name for SMSTrend              #
                                                                       #
