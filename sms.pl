@@ -1,6 +1,14 @@
 
 # Chapter 0: ----------------------------------------------------------
-# Headers and dependences ---------------------------------------------
+# Headers, dependences and options ------------------------------------
+# You can choose between the following actions:
+# 1. Send a new message
+# 2. Check status for a given message (order_id needed - see below -)
+# 3. Cancel a programed sending
+# 4. View message history
+# 5. Check the remaining credit
+# For future versions we will be able to (6.) receive SMS, but not yet
+# ---------------------------------------------------------------------
 
 # Chapter 1: ----------------------------------------------------------
 # Input variables -----------------------------------------------------
