@@ -39,15 +39,32 @@
 
 # Chapter 2: ----------------------------------------------------------
 # Variable validation -------------------------------------------------
+#   1. Is $login not empty?
+#   2. Is $password not empty?
+#   3. Is $message_type not empty and well formed (GP or GS)?
+#   4. Is $message length greater than 1 and lower than 1000?
+#   5. Is $recipient a valid phone number?
+#   6. Is $sender well formed (phone or short varchar (11))?
+#   7. If $sheduled_delivery_time is not empty, it is well formated?
+#   8. Is $order_id length lower than 32 char?
+# ---------------------------------------------------------------------
 
 # Chapter 3: ----------------------------------------------------------
 # HTTP Request building -----------------------------------------------
+# Build HTTP headers
+# ---------------------------------------------------------------------
 
 # Chapter 4: ----------------------------------------------------------
 # HTTP Request sending ------------------------------------------------
+# Send the petition and wait for response
+# ---------------------------------------------------------------------
 
 # Chapter 5: ----------------------------------------------------------
 # Parsing HTTP response -----------------------------------------------
+# Once we have the response, read it and interpret the results
+# ---------------------------------------------------------------------
 
 # Chapter 6: ----------------------------------------------------------
 # Output communication info and end program ---------------------------
+# Put in standar output the interpetation (failed and why or success)
+# ---------------------------------------------------------------------
