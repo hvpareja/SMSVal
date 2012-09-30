@@ -9,7 +9,8 @@ no warnings;
 # 4. View message history
 # 5. Check the remaining credit
 # 6. Configure SMSTrend account
-# For future versions we will be able to (7.) receive SMS, but not yet
+# 7. View help
+# For future versions we will be able to receive SMS, but not yet
 
 # 0.1 Headers
 # Library to handle HTTP packets
@@ -38,7 +39,8 @@ use LWP::UserAgent;
                 "CANCEL"  => "REMOVE_DELAYED",   # Opt 3. Cancel      #
                 "HISTORY" => "SMSHISTORY",       # Opt 4. History     #
                 "CREDIT"  => "CREDITS",          # Opt 5. Credit      #
-                "CONFIG"  => "NO_URL"            # Opt 6. Config      #  
+                "CONFIG"  => "NO_URL",           # Opt 6. Config      #
+                "HELP"    => "NO_URL"            # Opt 7. Help        #
                );                                                     #
  my $login;              # Login: User name for SMSTrend              #
                                                                       #
@@ -76,7 +78,13 @@ use LWP::UserAgent;
 
 
 
-
+# HELP  ---------------------------------------------------------------
+if($choosen_option eq "HELP" or $choosen_option eq ""){
+    print "HELP:\n";
+    print "SMSVal is a software ...\n";
+    exit;
+}
+# ---------------------------------------------------------------------
 
 
 
