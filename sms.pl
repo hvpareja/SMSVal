@@ -1,4 +1,5 @@
-
+#!/usr/bin/perl -w
+no warnings;
 # Chapter 0: ----------------------------------------------------------
 # Headers, dependences and options ------------------------------------
 # You can choose between the following actions:
@@ -68,38 +69,38 @@
     my $error_message = "";
 #   1. Is $choosen_option between the allowed options?
     if($opts_url{$choosen_option} eq ""){
-        $error_message.="Invalid option \"$choosen_option\"\n";
+        $error_message.=" Invalid option \"$choosen_option\"\n";
         $error = 1;
     }
 #   2. Is $login not empty?
     if($login eq ""){
-        $error_message.="Not username defined\n";
+        $error_message.=" Not username defined\n";
         $error = 1;
     }
 #   3. Is $password not empty?
     if($password eq ""){
-        $error_message.="No password defined\n";
+        $error_message.=" No password defined\n";
         $error = 1;
     }
 #   4. Is $message_type not empty and well formed (GP or GS)?
     $message_type = uc($message_type); # Turn in upper case
     if($message_type ne "GP" || $message_type ne "GS"){
-        $error_message.="Invalid message type:\"$message_type\"\n";
+        $error_message.=" Invalid message type:\"$message_type\"\n";
         $error = 1;
     }
 #   5. Is $message length greater than 1 and lower than 1000?
     my $msg_length = length($message);
     if($msg_length > 1000){
-        $error_message.="Too many characters in the message\n";
+        $error_message.=" Too many characters in the message\n";
         $error = 1;
     }
     if($msg_length eq ""){
-        $error_message.="Message not defined\n";
+        $error_message.=" Message not defined\n";
         $error = 1;
     }
 #   6. Is $recipient a valid phone number?
     if(!grep(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,$recipient)){
-        $error_message.="Invalid recipient: \"$recipient\"\n";
+        $error_message.=" Invalid recipient: \"$recipient\"\n";
         $error = 1;
     }
 #   7. Is $sender well formed (phone or short varchar (11))?
@@ -107,25 +108,59 @@
     if($sheduled_delivery_time ne ""){
         if(grep(/^2[0-9][0-9][0-9][0-1][0-9][0-3][0-9][0-2][0-9][0-6][0-9][0-6][0-9]$/,$sheduled_delivery_time)){
             my $year = substr($sheduled_delivery_time,0,4);
-            my $month = substr($sheduled_delivery_time,0,4);
-            my $day = substr($sheduled_delivery_time,0,4);
-            my $hour = substr($sheduled_delivery_time,0,4);
-            my $minute = substr($sheduled_delivery_time,0,4);
-            my $second = substr($sheduled_delivery_time,0,4);
+            my $month = substr($sheduled_delivery_time,4,2);
+            my $day = substr($sheduled_delivery_time,6,2);
+            my $hour = substr($sheduled_delivery_time,8,2);
+            my $minute = substr($sheduled_delivery_time,10,2);
+            my $second = substr($sheduled_delivery_time,12,2);
+            # Current date and time
+            my @localtime = localtime(time);
+            if($year < $localtime[5]){
+                $error_message.=" Invalid year\n";
+                $error = 1;
+            }
+            if($year > ($localtime[5]+100+1900)){
+                $error_message.=" Invalid year\n";
+                $error = 1;
+            }
+            if($month < 1 or $month > 12){
+                $error_message.=" Invalid month\n";
+                $error = 1;
+            }
+            if($day < 1 or $day > 31){
+                $error_message.=" Invalid day\n";
+                $error = 1;
+            }
+            if($hour > 23){
+                $error_message.=" Invalid hour\n";
+                $error = 1;
+            }
+            if($minute > 60){
+                $error_message.=" Invalid minute\n";
+                $error = 1;
+            }
+            if($second > 60){
+                $error_message.=" Invalid second\n";
+                $error = 1;
+            }
+            print "Message sheduled for $day/$month/$year $hour:$minute:$second\n";
         }else{
-            $error_message.="Sheduled delivery time bad formed (must be: yyyyMMddHHmmss).\n";
+            $error_message.=" Sheduled delivery time bad formed (must be: yyyyMMddHHmmss).\n";
             $error = 1;
         }
     }
 #   9. Is $order_id length lower than 32 char?
     if(length($order_id) > 32){
-        $error_message.="Order id too long, max. 32 chars.\n";
+        $error_message.=" Order id too long, max. 32 chars.\n";
         $error = 1;
     }
 # If there is an error, show the error message and exit:
     if($error){
-        print "Folowwing error/s found:\n";
+        print "-----------------------\n";
+        print "Following error/s found:\n";
+        print "=======================\n";
         print $error_message;
+        print "-----------------------\n";
         exit;
     }
 # ---------------------------------------------------------------------
