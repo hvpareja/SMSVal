@@ -78,6 +78,12 @@ use LWP::UserAgent;
 
 
 
+# Selected option: ----------------------------------------------------
+my $choosen_option = uc($ARGV[0]);
+# ---------------------------------------------------------------------
+
+
+
 # HELP  ---------------------------------------------------------------
 if($choosen_option eq "HELP" or $choosen_option eq ""){
     print "HELP:\n";
@@ -100,7 +106,7 @@ if($choosen_option eq "HELP" or $choosen_option eq ""){
     for $line (<CONF>){ eval($line); }
     
 # 2.2  Take params from config and or arguments
-    my $choosen_option = uc($ARGV[0]);
+    
     # To send a message:
     # sms send <recipient> <message> [<sheduled_delivery_time> <order_id>]
     if($choosen_option eq "SEND"){
