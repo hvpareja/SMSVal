@@ -20,7 +20,7 @@
    	Also, if you don't want to install this script in your system, you
     can execute it as following:
 
-   	 $ perl sms.pl
+   	$ perl sms.pl
 
  	Be sure the file has execution permission. 
     
