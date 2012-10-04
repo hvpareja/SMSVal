@@ -86,8 +86,74 @@ my $choosen_option = uc($ARGV[0]);
 
 # HELP  ---------------------------------------------------------------
 if($choosen_option eq "HELP" or $choosen_option eq ""){
-    print "HELP:\n";
-    print "SMSVal is a software ...\n";
+    print q{
+    ------------------------------- SMSVal ---------------------------
+                                Hector Valverde
+                            www.hectorvaverde.com
+    ------------------------------------------------------------------
+                
+        SMSVal is interface developped by Hector Valverde that
+    connects your computer to the servers of One-etere SMSTrend. You
+    can send SMS from your personal computer or server easily.
+    
+    USAGE:
+    
+    sms <option> [<arguments]
+    
+    OPTIONS
+    
+        cancel <order_id>
+                    - Cancel a scheduled sms given an order id
+        config <username> <password> <message_type> <sender>
+                    - Set up your login data, and params for SMSTrend
+        credit
+                    - Show remaining credit
+        help
+                    - Show this text
+        history <fromDate> <toDate>
+                    - View sent messages between two dates
+        send <recipient> <message> [<scheduledDate> <order_id>]
+                    - Send a single sms
+        status <order_id>
+                    - View the status of a scheduled sms
+    
+    ARGUMENTS
+    
+        <fromDate>          - Date with format: yyyyMMddhhmmss
+        <message>           - Message to send
+        <message_type>      - GP or GS (depends on your account settings)
+        <order_id>          - Id string for a given sms
+        <password>          - Your SMSTrend password
+        <recipient>         - A phone number to send the SMS, e.g.:
+                              +34610123456 or 0034605447804
+        <sender>            - A phone number or alphanumeric short string
+                              only if message_type = GP
+        <scheduledDate>     - Date with format: yyyyMMddhhmmss
+        <toDate>            - Date with format: yyyyMMddhhmmss
+
+    EXAMPLES
+    
+        1. Send a single message:
+            $ sms send +34610123456 "This is the message"
+        2. Scheduled a message for 25th June 2013 at 15:30:00 and
+           identificate it with the name "hvSMS":
+            $ sms send +34610123456 "Happy birthday, Hector" 20130625153000 hvSMS
+        3. View the status of a scheduled SMS
+            $ sms status hvSMS
+        4. Cancel a scheduled SMS
+            $ sms cancel hvSMS
+        5. View your credit
+            $ sms credit
+        6. View your message history between two dates   
+            $ sms history 20120625153000 20121125153000
+            
+    BUGS
+    
+        If you find any bug, please, send an email to hvalverde@uma.es
+        
+            
+        };
+    print "\n";
     exit;
 }
 # ---------------------------------------------------------------------
@@ -101,7 +167,7 @@ if($choosen_option eq "HELP" or $choosen_option eq ""){
 # Variable assignation ------------------------------------------------
 # Assign variable values from config file or arguments
 # 2.1 Open config file (if exists) and load params
-    open CONF, "config.txt";
+    open CONF, "config.txt" or die("There is any problem with config file\n");
     # Eval each param in config file
     for $line (<CONF>){ eval($line); }
     
@@ -379,7 +445,7 @@ my $req = POST($url, [
                       "message_type"  => $message_type,
                       "recipient"     => $recipient,
                       "message"       => $message,
-                      "scheduled_delivery_time"   => $sheduled_delivery_time,
+                      "scheduled_delivery_time"  => $sheduled_delivery_time,
                       "order_id"                 => $order_id,
                       "from"                     => $from,
                       "to"                       => $to
