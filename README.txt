@@ -30,20 +30,16 @@
     
     OPTIONS
     
-        cancel <order_id>
-                    - Cancel a scheduled sms given an order id
-        config <username> <password> <message_type> <sender>
-                    - Set up your login data, and params for SMSTrend
-        credit
-                    - Show remaining credit
-        help
-                    - Show this text
-        history <fromDate> <toDate>
-                    - View sent messages between two dates
-        send <recipient> <message> [<scheduledDate> <order_id>]
-                    - Send a single sms
-        status <order_id>
-                    - View the status of a scheduled sms
+        cancel <order_id>		- Cancel a scheduled sms given an order id
+        config <username> <password> <message_type> <sender> 
+		   			- Set up your login data, and params for SMSTrend
+                    
+        credit				- Show remaining credit
+        help			 	- Show this text
+        history <fromDate> <toDate>	- View sent messages between two dates
+        send <recipient> <message> [<scheduledDate> <order_id>]	
+					- Send a single sms
+        status <order_id>	        - View the status of a scheduled sms
     
     ARGUMENTS
     
