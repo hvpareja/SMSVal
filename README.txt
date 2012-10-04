@@ -12,8 +12,8 @@
     	The source code is just an script (interpreted code) so you don't 
     need to compile it. Only that you need is Perl.
 
-    	To be able to call the program from any path or your system you
-    can move the script to the /usr/bin path:
+    	To call the program from any path in your system you can move the
+    script to the /usr/bin path:
 
     $ sudo cp sms.pl /usr/bin/sms
 
