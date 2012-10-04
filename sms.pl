@@ -475,7 +475,7 @@ my $req = POST($url, [
 # Chapter 6: ----------------------------------------------------------
 # HTTP Request sending ------------------------------------------------
 # Send the petition and wait for response
-my $response = $ua->request($req)->as_string();
+my $response = $ua->request($req)->content();
 # ---------------------------------------------------------------------
 
 
@@ -494,7 +494,23 @@ $response =~ s/\|/\t/g;
 
 # Chapter 8: ----------------------------------------------------------
 # Output communication info and end program ---------------------------
+print "\n\n\tSMSVal (http://www.hectorvalverde.com):\n";
+print "\t========================================\n";
+if($choosen_option eq "SEND"){
+    print "\n\n\tMESSAGE INFO:\n";
+    print "\t--------------------------\n";
+    print "\tMessage length: ".length($message)." chars\n";
+    print "\tSent to: ".$recipient."\n";
+    print "\t--------------------------\n";
+}
 # Put in standar output the interpetation (failed and why or success)
-print $response;
+print "\n\tSERVER RESPONSE:\n";
+print "\t--------------------------\n";
+foreach $line (split(/\n/,$response)){
+    print "\t   ".$line."\n";
+}
+print "\t--------------------------\n\n";
+print "\tEND\n";
+print "\t========================================\n\n\n";
 exit;
 # ---------------------------------------------------------------------
