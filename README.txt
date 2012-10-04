@@ -15,25 +15,25 @@
     	To call the program from any path in your system you can move the
     script to the /usr/bin path:
 
-    $ sudo cp sms.pl /usr/bin/sms
+    	$ sudo cp sms.pl /usr/bin/sms
 
    	Also, if you don't want to install this script in your system, you
     can execute it as following:
 
-    $ perl sms.pl
+   	 $ perl sms.pl
 
  	Be sure the file has execution permission. 
     
     CONFIGURATION:
     
-        Before use the program you must sing up in SMSTrend (http://public.smstrend.net/)
+       	Before use the program you must sing up in SMSTrend (http://public.smstrend.net/)
     and configure your login data as following:
     
-    $ sms config <username> <password> <message_type> <sender>
+    	$ sms config <username> <password> <message_type> <sender>
     
     USAGE
     
-    $ sms <option> [<arguments]
+    	$ sms <option> [<arguments]
     
     OPTIONS
     
