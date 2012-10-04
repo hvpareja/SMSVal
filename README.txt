@@ -26,8 +26,8 @@
     
     CONFIGURATION:
     
-       	Before use the program you must sing up in SMSTrend (http://public.smstrend.net/)
-    and configure your login data as following:
+       	Before use the program you must tossing up in SMSTrend 
+    (http://public.smstrend.net/) and configure your login data as following:
     
     	$ sms config <username> <password> <message_type> <sender>
     
