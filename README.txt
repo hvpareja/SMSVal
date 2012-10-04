@@ -17,6 +17,12 @@
 
     $ sudo cp sms.pl /usr/bin/sms
 
+   	Also, if you don't want to install this script in your system, you
+    can execute it as following:
+
+    $ perl sms.pl
+
+ 	Be sure the file has execution permission. 
     
     USAGE:
     
