@@ -17,6 +17,8 @@ no warnings;
 use HTTP::Request::Common qw(POST);
 # User Agent definition to send HTTP request
 use LWP::UserAgent;
+# Home path from environment
+my $home = $ENV{"HOME"};
 # ---------------------------------------------------------------------
 
 
@@ -98,6 +100,13 @@ if($choosen_option eq "HELP" or $choosen_option eq ""){
     
     USAGE:
     
+        Before use the program you must sing up in SMSTrend (http://public.smstrend.net/)
+    and configure your login data as following:
+    
+    sms config <username> <password> <message_type> <sender>
+    
+        Now, you can use the program normally:
+    
     sms <option> [<arguments]
     
     OPTIONS
@@ -120,6 +129,7 @@ if($choosen_option eq "HELP" or $choosen_option eq ""){
     ARGUMENTS
     
         <fromDate>          - Date with format: yyyyMMddhhmmss
+        <login>             - Your SMSTrend username
         <message>           - Message to send
         <message_type>      - GP or GS (depends on your account settings)
         <order_id>          - Id string for a given sms
@@ -167,9 +177,13 @@ if($choosen_option eq "HELP" or $choosen_option eq ""){
 # Variable assignation ------------------------------------------------
 # Assign variable values from config file or arguments
 # 2.1 Open config file (if exists) and load params
-    open CONF, "config.txt" or die("There is any problem with config file\n");
+    if( -e "$home/.smsconfig"){
+    open CONF, "$home/.smsconfig" or die("There is any problem with config file\n");
     # Eval each param in config file
     for $line (<CONF>){ eval($line); }
+    }elsif($choosen_option ne "CONFIG"){
+       print "\nYou must configure your login data. View \$ sms help for further information\n\n";
+    }
     
 # 2.2  Take params from config and or arguments
     
@@ -410,7 +424,7 @@ if($choosen_option eq "CONFIG"){
     my $field_sender       = "\$sender=\"".$sender."\"";
     my $field_message_type = "\$message_type=\"".$message_type."\"";
     # File creation
-    open CONF, ">config.txt" or die(" Unable to write config.txt");
+    open CONF, ">".$home."/.smsconfig" or die(" Unable to write config file");
     # File writting
     print CONF $field_login.";\n";
     print CONF $field_pass.";\n";

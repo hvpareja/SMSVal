@@ -24,26 +24,38 @@
 
  	Be sure the file has execution permission. 
     
-    USAGE:
+    CONFIGURATION:
     
-    sms <option> [<arguments]
+        Before use the program you must sing up in SMSTrend (http://public.smstrend.net/)
+    and configure your login data as following:
+    
+    	sms config <username> <password> <message_type> <sender>
+    
+    USAGE
+    
+    	sms <option> [<arguments]
     
     OPTIONS
     
-        cancel <order_id>		- Cancel a scheduled sms given an order id
-        config <username> <password> <message_type> <sender> 
-		   			- Set up your login data, and params for SMSTrend
-                    
-        credit				- Show remaining credit
-        help			 	- Show this text
-        history <fromDate> <toDate>	- View sent messages between two dates
-        send <recipient> <message> [<scheduledDate> <order_id>]	
-					- Send a single sms
-        status <order_id>	        - View the status of a scheduled sms
+        cancel <order_id>
+                    - Cancel a scheduled sms given an order id
+        config <username> <password> <message_type> <sender>
+                    - Set up your login data, and params for SMSTrend
+        credit
+                    - Show remaining credit
+        help
+                    - Show this text
+        history <fromDate> <toDate>
+                    - View sent messages between two dates
+        send <recipient> <message> [<scheduledDate> <order_id>]
+                    - Send a single sms
+        status <order_id>
+                    - View the status of a scheduled sms
     
     ARGUMENTS
     
         <fromDate>          - Date with format: yyyyMMddhhmmss
+        <login>             - Your SMSTrend username
         <message>           - Message to send
         <message_type>      - GP or GS (depends on your account settings)
         <order_id>          - Id string for a given sms
