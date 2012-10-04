@@ -29,11 +29,11 @@
         Before use the program you must sing up in SMSTrend (http://public.smstrend.net/)
     and configure your login data as following:
     
-    	sms config <username> <password> <message_type> <sender>
+    $ sms config <username> <password> <message_type> <sender>
     
     USAGE
     
-    	sms <option> [<arguments]
+    $ sms <option> [<arguments]
     
     OPTIONS
     
