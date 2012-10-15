@@ -94,7 +94,7 @@ if($choosen_option eq "HELP" or $choosen_option eq ""){
                             www.hectorvaverde.com
     ------------------------------------------------------------------
                 
-        SMSVal is an interface developped by Hector Valverde that
+        SMSVal is an interface developed by Hector Valverde that
     connects your computer to the servers of One-etere SMSTrend. You
     can send SMS from your personal computer or server easily.
     
