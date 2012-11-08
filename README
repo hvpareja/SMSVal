@@ -46,7 +46,8 @@
         credit
                     - Show remaining credit
         fsend <file> <message> [<sheduledDate> <order_id>]
-                    - Send a massive message to a file list (new)
+                    - Send a massive message to a file list (new), numbers must
+                      be separated by a new line
         help
                     - Show this text
         history <fromDate> <toDate>
