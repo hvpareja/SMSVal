@@ -45,6 +45,8 @@
                     - Set up your login data, and params for SMSTrend
         credit
                     - Show remaining credit
+        fsend <file> <message> [<sheduledDate> <order_id>]
+                    - Send a massive message to a file list (new)
         help
                     - Show this text
         history <fromDate> <toDate>
@@ -53,6 +55,7 @@
                     - Send a single sms
         status <order_id>
                     - View the status of a scheduled sms
+    
     
     ARGUMENTS
     

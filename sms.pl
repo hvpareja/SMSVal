@@ -26,6 +26,7 @@ no warnings;
 # 5. Check the remaining credit
 # 6. Configure SMSTrend account
 # 7. View help
+# 8. File sending (new)
 # For future versions we will be able to receive SMS, but not yet
 
 # 0.1 Headers
@@ -58,7 +59,8 @@ my $home = $ENV{"HOME"};
                 "HISTORY" => "SMSHISTORY",       # Opt 4. History     #
                 "CREDIT"  => "CREDITS",          # Opt 5. Credit      #
                 "CONFIG"  => "NO_URL",           # Opt 6. Config      #
-                "HELP"    => "NO_URL"            # Opt 7. Help        #
+                "HELP"    => "NO_URL",           # Opt 7. Help        #
+                "FSEND"   => "SENDSMS"           # Opt 8. File send   #
                );                                                     #
  my $login;              # Login: User name for SMSTrend              #
                                                                       #
@@ -114,7 +116,7 @@ if($choosen_option eq "HELP" or $choosen_option eq ""){
     connects your computer to the servers of One-etere SMSTrend. You
     can send SMS from your personal computer or server easily.
     
-    USAGE:
+    CONFIG:
     
         Before use the program you must to sing up in SMSTrend 
     (http://public.smstrend.net/) and configure your login data as
@@ -134,6 +136,9 @@ if($choosen_option eq "HELP" or $choosen_option eq ""){
                     - Set up your login data, and params for SMSTrend
         credit
                     - Show remaining credit
+        fsend <file> <message> [<sheduledDate> <order_id>]
+                    - Send a massive message to a file list (new), numbers must
+                      be separated by a new line
         help
                     - Show this text
         history <fromDate> <toDate>
@@ -209,6 +214,19 @@ if($choosen_option eq "HELP" or $choosen_option eq ""){
     # sms send <recipient> <message> [<sheduled_delivery_time> <order_id>]
     if($choosen_option eq "SEND"){
         $recipient              = $ARGV[1];
+        $message                = $ARGV[2];
+        $sheduled_delivery_time = $ARGV[3];
+        $order_id               = $ARGV[4];
+    }
+    # To send a massive message to a list of recipients in a file
+    if($choosen_option eq "FSEND"){
+        $file                   = $ARGV[1];
+        $recipient              = "";
+            open LIST, $file or die("\nSorry, cannot open the file: $file\n");
+            while (my $item_recipient = <LIST>){
+                chomp($item_recipient);
+                $recipient .= $recipient.",".$item_recipient;
+            }
         $message                = $ARGV[2];
         $sheduled_delivery_time = $ARGV[3];
         $order_id               = $ARGV[4];
